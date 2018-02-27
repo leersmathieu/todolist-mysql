@@ -16,7 +16,7 @@ require "php/funcvar.php"; // j'apelle ma page function et variable
     <body>
         <div class="page">
             <header>
-                <img src="assets/walpap.jpg" alt="Entendue sauvage"> 
+                <img src="assets/walpap.jpg" alt="Entendue sauvage"> <!-- Je me permet l'ajout d'une image dans le header -->
             </header>
             <section class="afaire">
                 <?php
