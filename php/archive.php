@@ -4,16 +4,17 @@
     <legend><strong>Archive</strong></legend>
     <form action="index.php" method="post" name="formchecked">
         <?php
-            foreach ($log as $key => $value){
+            $resultat = $bdd->query('SELECT * FROM tache WHERE fin="True"');
 
-                if ($value["fin"] == true){
-
-                    echo "<input type='checkbox' name='tache[]' value='".$value."'checked disabled/>
-                        <label class='line' for='choix'>".$value["nomtache"]."</label><br />";
-                }
+            while ($donnees = $resultat->fetch()) // Pour chaque ligne ...
+            {
+                echo "<input type='checkbox' name='tache[]' value='".($donnees['nomtache'])."'checked disabled/>
+                        <label for='choix'>".($donnees['nomtache'])."</label><br />";
+                
             }
+
+            $resultat->closeCursor(); // Ferme le curseur, permettant à la requête d'être de nouveau exécutée 
         ?>
-        <!-- <input type="submit" name="clean" value="clean" id="clean" > --> 
     </form>
 </fieldset>
 
