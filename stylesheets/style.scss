@@ -73,3 +73,20 @@ body {
     }
 }
 
+.protect {
+    padding: 50px;
+    width: 100vw;
+    height: 100vh;
+
+    input {
+        width: 100%;
+        height: 20%;
+    }
+    span.hacker {
+        color: red;
+        display: flex;
+        font-size: 300%;
+        justify-content: center;
+        
+    }
+}
