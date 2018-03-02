@@ -46,18 +46,17 @@ $sqlobject = $sqlobject->fetch();                                        //Je ve
                                                                         //
 // echo ($sqlobject['nomtache']);
 
-// echo ($_POST['tache']);
+if (isset($_POST['ajouter']) AND !empty($_POST['tache']) AND $sqlobject['nomtache'] != $_POST['tache']){ //Si on appuie sur le boutton ajouter... ( + comparaison )
+
+    $add_tache = ($_POST['tache']); //je récupère la valeur que je veux ajouter
 
 
-if (isset($_POST['ajouter']) AND $sqlobject['nomtache'] != $_POST['tache']){ //Si on appuie sur le boutton ajouter... ( + comparaison )
-
-    $add_tache = sanitize($_POST['tache']); //je récupère la valeur que je veux ajouter
-// + apelle de la fonction sanitize //
-
-    if (!empty($add_tache)){ // Si addtache n'est pas vi ... ( du a la sanitization )
+    if (!empty($add_tache) AND $add_tache[0] != '<'){ // Si addtache n'est pas vide et qu'elle ne commence pas par '<'...
+        
+        $add_tache = sanitize($_POST['tache']); //appelle de la sanitisation
 
         $dbadd = "INSERT INTO tache (nomtache, fin) 
-            VALUES ('".$add_tache."', 'False')";
+                VALUES ('".$add_tache."', 'False')";
             //Ajout de la tache dans la database avec la valeur 'False'
 
          $resultat = $bdd->exec($dbadd);
@@ -66,15 +65,19 @@ if (isset($_POST['ajouter']) AND $sqlobject['nomtache'] != $_POST['tache']){ //S
             
 
     }
-    else {
+    else { // Sinon, grosse loop pour faire ramer le pc du méchant qui tente une manip chelou + affichage d'un message sympathique
+
         echo '<form class="protect"><input type="submit" name="refresh" value="Skip" id="refresh"><span class="hacker"><br />';
+
             for ($x = 0; $x <= 99999; $x++) {
+
                     echo "don't try to hack my site nab<br />";
+
             }
+
         echo '</span></from>';
     }
 
-   
 }
 
 if (isset($_POST['boutton'])){ //si j'enregistre ( je check la case.. )
@@ -95,7 +98,7 @@ if (isset($_POST['boutton'])){ //si j'enregistre ( je check la case.. )
     $dbup = "UPDATE tache
             SET fin = 'True'
             WHERE nomtache='".$key."'";
-            //Si nomtache est égale à la valeur checkée, remplacement de 'False' par 'True'
+            //La où "nomtache" est égale à une valeur de $choix, je remplace "fin". False devient True
     
     $resultat = $bdd->exec($dbup); // Exécution... ( query )
 
