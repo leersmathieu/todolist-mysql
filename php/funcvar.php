@@ -37,14 +37,15 @@ function sanitize($key, $filter=FILTER_SANITIZE_STRING){ // je crée une fonctio
 }
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \\
-                                // CONDITION \\
+                                // FUNCTION-VARIABLE-CONDITION \\
 
+$datedj = date("Y-m-d");
                                 
 $sqlobject = $bdd->query('SELECT * FROM tache ORDER BY id DESC LIMIT 1 '); //
                                                                           //Pour éviter les doublons en rafraichissant la page...
 $sqlobject = $sqlobject->fetch();                                        //Je veux récupéré la valeur (nomtache) du dernier élément inséré via son id
-                                                                        //
-// echo ($sqlobject['nomtache']);
+                                                                        //pour pouvoir la comparer ( juste en dessous )
+// echo ($sqlobject['nomtache']);                                      //
 
 if (isset($_POST['ajouter']) AND !empty($_POST['tache']) AND $sqlobject['nomtache'] != $_POST['tache']){ //Si on appuie sur le boutton ajouter... ( + comparaison )
 
@@ -53,11 +54,13 @@ if (isset($_POST['ajouter']) AND !empty($_POST['tache']) AND $sqlobject['nomtach
 
     if (!empty($add_tache) AND $add_tache[0] != '<'){ // Si addtache n'est pas vide et qu'elle ne commence pas par '<'...
         
-        $add_tache = sanitize($_POST['tache']); //appelle de la sanitisation
+        $add_tache = sanitize($_POST['tache']); // appelle de la sanitisation
 
-        $dbadd = "INSERT INTO tache (nomtache, fin) 
-                VALUES ('".$add_tache."', 'False')";
-            //Ajout de la tache dans la database avec la valeur 'False'
+        $add_date = !empty($_POST['date']) ? $_POST['date'] : $datedj; // date du jour par défaut ( si aucune date entrée )
+
+        $dbadd = "INSERT INTO tache (nomtache, fin, `date`) 
+                VALUES ('".$add_tache."', 'False','".$add_date."')";
+            //Ajout de la tache ( et de la date ) dans la database avec la valeur de 'fin' sur 'False'
 
          $resultat = $bdd->exec($dbadd);
             //execution de la requête sur la base de donnée
@@ -65,13 +68,13 @@ if (isset($_POST['ajouter']) AND !empty($_POST['tache']) AND $sqlobject['nomtach
             
 
     }
-    else { // Sinon, grosse loop pour faire ramer le pc du méchant qui tente une manip chelou + affichage d'un message sympathique
+    else { // Sinon, grosse loop pour faire ramer la page du méchant qui tente une manip chelou + affichage d'un message sympathique
 
         echo '<form class="protect"><input type="submit" name="refresh" value="Skip" id="refresh"><span class="hacker"><br />';
 
             for ($x = 0; $x <= 99999; $x++) {
 
-                    echo "don't try to hack my site nab<br />";
+                echo "don't try to hack my site nab<br />";
 
             }
 

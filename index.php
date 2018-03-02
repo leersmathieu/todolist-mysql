@@ -11,7 +11,7 @@ require "php/funcvar.php"; // j'apelle ma page function et variable
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Pense-bete</title>
+        <title>My NATURAL todolist</title>
     </head>
     <body>
         <div class="page">
