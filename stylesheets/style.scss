@@ -40,13 +40,14 @@ body {
         border: $border;
         border-left: $border;
         margin-top: 15px;
-        #enregistrer {
-            display: flex;
-            margin: 0 auto;
-            width: 30%;
-            margin-top: 10px;
-            justify-content: center;
-        }
+        
+    }
+    .enregistrer {
+        display: flex;
+        margin: 0 auto;
+        width: 30%;
+        margin-top: 10px;
+        justify-content: center;
     }
     .archive {
         background-color: $div-color;

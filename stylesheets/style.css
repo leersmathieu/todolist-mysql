@@ -29,12 +29,12 @@ body {
     border: 6px solid #333333;
     border-left: 6px solid #333333;
     margin-top: 15px; }
-    .page .afaire #enregistrer {
-      display: flex;
-      margin: 0 auto;
-      width: 30%;
-      margin-top: 10px;
-      justify-content: center; }
+  .page .enregistrer {
+    display: flex;
+    margin: 0 auto;
+    width: 30%;
+    margin-top: 10px;
+    justify-content: center; }
   .page .archive {
     background-color: dimgray;
     padding: 15px;

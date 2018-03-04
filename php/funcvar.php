@@ -108,4 +108,11 @@ if (isset($_POST['boutton'])){ //si j'enregistre ( je check la case.. )
     }
 }
 
+if (isset($_POST['resetAr'])){
+
+    // $reset=sanitize($_POST['resetall']);
+
+
+    $tablereset = $bdd->query("DELETE FROM tache WHERE fin='true'");
+}
 ?>

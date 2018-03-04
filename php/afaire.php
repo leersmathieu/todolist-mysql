@@ -32,7 +32,7 @@
 
             $resultat->closeCursor(); // Ferme le curseur, permettant à la requête d'être de nouveau exécutée 
         ?>
-        <input type="submit" name="boutton" value="check" id="enregistrer" >
+        <input type="submit" name="boutton" value="check" class="enregistrer" >
     </form>
 </fieldset>
 

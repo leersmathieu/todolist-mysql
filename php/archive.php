@@ -17,6 +17,7 @@
 
             $resultat->closeCursor(); // Ferme le curseur, permettant à la requête d'être de nouveau exécutée 
         ?>
+        <input type="submit" name='resetAr' value='Reset Archive' class='enregistrer'>
     </form>
 </fieldset>
 
