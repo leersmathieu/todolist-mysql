@@ -52,9 +52,9 @@ if (isset($_POST['ajouter']) AND !empty($_POST['tache']) AND $sqlobject['nomtach
     $add_tache = ($_POST['tache']); //je récupère la valeur que je veux ajouter
 
 
-    if (!empty($add_tache) AND $add_tache[0] != '<'){ // Si addtache n'est pas vide et qu'elle ne commence pas par '<'...
+    if (!empty($add_tache) AND $add_tache[0] != '<' AND $add_tache[0] != '&'){ // Si addtache n'est pas vide et qu'elle ne commence pas par '<'...
         
-        $add_tache = sanitize($_POST['tache']); // appelle de la sanitisation
+        $add_tache = sanitize($add_tache); // appelle de la sanitisation
 
         $add_date = !empty($_POST['date']) ? $_POST['date'] : $datedj; // date du jour par défaut ( si aucune date entrée )
 
@@ -84,6 +84,8 @@ if (isset($_POST['ajouter']) AND !empty($_POST['tache']) AND $sqlobject['nomtach
 }
 
 if (isset($_POST['boutton'])){ //si j'enregistre ( je check la case.. )
+
+    sanitize($_POST['boutton']);
 
     $choix=sanitize($_POST['tache']); // je récupère les valeurs checkée ("tache[]") des inputs ( qui sont alors dans un tableau )
 
